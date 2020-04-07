@@ -12,3 +12,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "STUDENTS")
 @EntityListeners(AuditingEntityListener.class)
 
+public class Students{
+    
+}
