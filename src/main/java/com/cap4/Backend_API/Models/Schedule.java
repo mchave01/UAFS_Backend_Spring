@@ -1,4 +1,4 @@
-package com.cap4.Backend_API;
+package com.cap4.Backend_API.Models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

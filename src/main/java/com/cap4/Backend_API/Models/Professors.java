@@ -1,8 +1,10 @@
-package com.cap4.Backend_API;
+package com.cap4.Backend_API.Models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,7 +17,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 public class Professors {
 
     @Id
-    @Column(name = "PROFESSOR_ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@Column(name = "PROFESSOR_ID", nullable = false)
     private int professorId;
 
     @Column(name = "PROFESSOR_NAME", nullable = false)

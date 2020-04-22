@@ -1,42 +1,85 @@
-package com.cap4.Backend_API;
+package com.cap4.Backend_API.Models;
 
 import java.sql.Date;
 import java.sql.Time;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Table;
-import javax.persistence.Id;
+
+import com.ibm.db2.cmx.annotation.Id;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name = "classes")
+@Table(name = "CLASSES")
 @EntityListeners(AuditingEntityListener.class)
 public class Classes {
     
     @Id
-    private long classId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int classId;
+
+    @Column(name = "STATUS", nullable = false)
     private String status;
+
+    @Column(name = "CRN", nullable = false)
     private int crn;
+
+    @Column(name = "TITLE", nullable = false)
     private String title;
+    
+    @Column(name = "COURSE_NUMBER", nullable = false)
     private int courseNum;
+
+    @Column(name = "SECTION_NUMBER", nullable = false)
     private String sectionNum;
+    
+    @Column(name = "CREDITS", nullable = false)
     private int credits;
+
+    @Column(name = "MEETING_DAYS", nullable = false)
     private String meetingDays;
+    
+    @Column(name = "START_TIME", nullable = false)
     private Time startTime;
+
+    @Column(name = "END_TIME", nullable = false)
     private Time endTime;
+
+    @Column(name = "START_DATE", nullable = false)
     private Date startDate;
+    
+    @Column(name = "END_DATE", nullable = false)
     private Date endDate;
+    
+    @Column(name = "BUILDING", nullable = false)
     private String building;
+    
+    @Column(name = "ROOM_NUMBER", nullable = false)
     private String roomNum;
+    
+    @Column(name = "CAPACITY", nullable = false)
     private int capacity;
+    
+    @Column(name = "ACCEPTED", nullable = false)
     private int accepted;
-    private int remaing;
+    
+    @Column(name = "REMAINING", nullable = false)
+    private int remaining;
+
+    @Column(name = "WAIT_LISTED", nullable = false)
     private int waitlisted;
+    
+    @Column(name = "PROFESSOR_NAME", nullable = false)
     private String professorName;
+    
+    @Column(name = "WEEKS", nullable = false)
     private int weeks;
 
-    public Classes(long classId, String status, int crn, String title, int courseNum, String sectionNum, int credits,
+    public Classes(int classId, String status, int crn, String title, int courseNum, String sectionNum, int credits,
             String meetingDays, Time startTime, Time endTime, Date startDate, Date endDate, String building,
             String roomNum, int capacity, int accepted, int remaing, int waitlisted, String professorName, int weeks) {
         this.classId = classId;
@@ -55,7 +98,7 @@ public class Classes {
         this.roomNum = roomNum;
         this.capacity = capacity;
         this.accepted = accepted;
-        this.remaing = remaing;
+        this.remaining = remaing;
         this.waitlisted = waitlisted;
         this.professorName = professorName;
         this.weeks = weeks;
@@ -65,7 +108,7 @@ public class Classes {
         return classId;
     }
 
-    public void setClassId(long classId) {
+    public void setClassId(int classId) {
         this.classId = classId;
     }
 
@@ -190,11 +233,11 @@ public class Classes {
     }
 
     public int getRemaing() {
-        return remaing;
+        return remaining;
     }
 
     public void setRemaing(int remaing) {
-        this.remaing = remaing;
+        this.remaining = remaing;
     }
 
     public int getWaitlisted() {
