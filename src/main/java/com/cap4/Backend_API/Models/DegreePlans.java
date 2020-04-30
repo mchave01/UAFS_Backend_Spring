@@ -1,10 +1,13 @@
 package com.cap4.Backend_API.Models;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.ibm.db2.cmx.annotation.Id;
@@ -13,7 +16,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 
 @Entity
-@Table(name = "DEGREEPLANS")
+@Table(name = "DEGREE_PLANS")
 @EntityListeners(AuditingEntityListener.class)
 public class DegreePlans 
 {
@@ -27,6 +30,9 @@ public class DegreePlans
 	@Column(name = "YEAR", nullable = false)
 	private String Year;
 
+    @OneToMany(mappedBy = "degreePlans")
+    private List<CourseReqs> courseReqs;
+    
 	public DegreePlans(int DegreePlanId, String Name, String Year)
 	{
 		this.DegreePlanId = DegreePlanId;

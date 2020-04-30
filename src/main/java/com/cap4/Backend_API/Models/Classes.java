@@ -2,11 +2,14 @@ package com.cap4.Backend_API.Models;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.ibm.db2.cmx.annotation.Id;
@@ -32,7 +35,7 @@ public class Classes {
     private String title;
     
     @Column(name = "COURSE_NUMBER", nullable = false)
-    private int courseNum;
+    private String courseNum;
 
     @Column(name = "SECTION_NUMBER", nullable = false)
     private String sectionNum;
@@ -79,7 +82,14 @@ public class Classes {
     @Column(name = "WEEKS", nullable = false)
     private int weeks;
 
-    public Classes(int classId, String status, int crn, String title, int courseNum, String sectionNum, int credits,
+    @OneToMany(mappedBy = "classes")
+	private List<CourseReqs> courseReqs;
+
+	@OneToMany(mappedBy = "classes_sch")
+	private List<Schedule> schedule;
+
+
+    public Classes(int classId, String status, int crn, String title, String courseNum, String sectionNum, int credits,
             String meetingDays, Time startTime, Time endTime, Date startDate, Date endDate, String building,
             String roomNum, int capacity, int accepted, int remaing, int waitlisted, String professorName, int weeks) {
         this.classId = classId;
@@ -136,11 +146,11 @@ public class Classes {
         this.title = title;
     }
 
-    public int getCourseNum() {
+    public String getCourseNum() {
         return courseNum;
     }
 
-    public void setCourseNum(int courseNum) {
+    public void setCourseNum(String courseNum) {
         this.courseNum = courseNum;
     }
 

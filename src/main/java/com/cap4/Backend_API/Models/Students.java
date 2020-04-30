@@ -1,11 +1,14 @@
 package com.cap4.Backend_API.Models;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -38,6 +41,9 @@ public class Students{
     
     @Column(name = "EMAIL", nullable = false)
     private String email;
+
+    @OneToMany(mappedBy = "studentId")
+    private List<Schedule> schedule;
 
     public Students(int studentId, String firstName, String lastName, String username, String password, String major, String email) {
 		this.studentId = studentId;

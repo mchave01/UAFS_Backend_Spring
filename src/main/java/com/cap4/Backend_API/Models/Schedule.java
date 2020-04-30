@@ -1,10 +1,11 @@
 package com.cap4.Backend_API.Models;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.ibm.db2.cmx.annotation.Id;
@@ -21,24 +22,16 @@ public class Schedule{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int scheduleId;
 
-	@Column(name = "CLASS_ID", nullable = false)
-	private int classId;
+    @ManyToOne
+    @JoinColumn(name="STUDENT_ID")
+    private Students studentId;
 
-	@Column(name = "STUDENT_ID", nullable = false)
-	private int studentID;
+    @ManyToOne
+    @JoinColumn(name="CLASS_ID")
+    private Classes classes_sch;
 
-	public Schedule(int classId, int scheduleID, int studentId){
-		this.classId = classId;
+	public Schedule(int scheduleID){
 		this.scheduleId = scheduleID;
-		this.studentID = studentId;
-    }
-
-    public int getClassId() {
-        return classId;
-    }
-
-    public void setClassId(int classId) {
-        this.classId = classId;
     }
 
     public int getScheduleId() {
@@ -49,11 +42,4 @@ public class Schedule{
         this.scheduleId = scheduleId;
     }
 
-    public int getStudentID() {
-        return studentID;
-    }
-
-    public void setStudentID(int studentID) {
-        this.studentID = studentID;
-    }
 }
